@@ -23,6 +23,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
+
+app.get('/', (req, res) => {
+    res.send('Server is running');
+});
+
 app.listen(PORT, () => {
     connectDB();
     console.log(`Server running at ${BASE_URL}:${PORT}`);
