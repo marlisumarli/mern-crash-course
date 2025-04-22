@@ -3,7 +3,7 @@ import ProductRoute from "./routes/product.route.js";
 
 import express from 'express';
 import dotenv from 'dotenv';
-import * as path from "node:path";
+import path from 'path';
 
 dotenv.config();
 const app = express();
@@ -18,14 +18,10 @@ app.use('/api/products', ProductRoute);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, "/frontend/dist")));
-    app.get('*', (req, res) => {
+    app.get(/^\/(?!api).*/, (req, res) => {
         res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'));
     });
 }
-
-app.get('/', (req, res) => {
-    res.send('Server is running');
-});
 
 app.listen(PORT, () => {
     connectDB();

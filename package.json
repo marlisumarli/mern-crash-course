@@ -4,13 +4,16 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./backend/server.js"
+    "dev": "cross-env NODE_ENV=development nodemon ./backend/server.js",
+    "start": "cross-env NODE_ENV=production node backend/server.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "mongoose": "^8.13.2"
